@@ -91,7 +91,6 @@ if __name__ == "__main__":
     PRIMER_PATH = None
     SAVE_PATH = None
 
-
     for opt, arg in OPTS:
 
         if opt in ('-h', '--help'):
