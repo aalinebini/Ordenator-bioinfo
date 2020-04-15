@@ -94,17 +94,32 @@ if __name__ == "__main__":
     for opt, arg in OPTS:
 
         if opt in ('-h', '--help'):
-            print('ordenator.py -f --fastq_path -p --primer_path -s --save_path -h --help')
+            print('''
+            This program sorts the sequences according to the primers. 
+            ordenator.py -f --fastq_path -p --primer_path -s --save_path -h --help
+           ''')
             sys.exit(2)
         
         elif opt in ('-f', '--fastq_path'):
-            SEQUENCE_PATH = arg
+            if re.match('.+fastq$|.+txt$', arg):
+                SEQUENCE_PATH = arg
+            else:
+                print("-f isn't a fastq or txt file")
+                sys.exit(3)
 
         elif opt in ('-p', '--primer_path'):
-            PRIMER_PATH = arg
+            if re.match('.+csv$', arg):
+                PRIMER_PATH = arg
+            else:
+                print("-p isn't a csv file")
+                sys.exit(4)
 
         elif opt in ('-s', '--save_path'):
-            SAVE_PATH = arg
+            if re.match('.+csv$', arg):
+                SAVE_PATH = arg
+            else:
+                print("-s isn't a csv file")
+                sys.exit(5)
 
     if SEQUENCE_PATH and PRIMER_PATH and SAVE_PATH:
 
@@ -115,4 +130,4 @@ if __name__ == "__main__":
 
     else:
         print('missing arguments -f, -p or -s')
-        sys.exit(3)
+        sys.exit(6)
